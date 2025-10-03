@@ -4,19 +4,19 @@ import numpy as np
 # Funksjoner
 from lesinput import lesinput
 from lengder import lengder
+from boyestivhet import boyestivhet
 
 
 def main():
 
-    # -----Leser inputdata
-    npunkt, punkt, nelem, elemkonn, tvsnitt = lesinput()
+    #Leser inputdata
+    npunkt, punkt, nelem, elemkonn, tvsnitt, geom = lesinput()
 
-    # -----Beregner elementlengder
+    #Beregner elementlengder
     elemlen = lengder(punkt, elemkonn)
 
-    # -----Beregner bøyestivhet for alle elementer
-    # Lag funksjonen selv
-    # EI = boyestivhet(tvsnitt, geom, ...
+    #Beregner bøyestivhet for alle elementer
+    EI = boyestivhet(tvsnitt, geom) 
 
     # ------Bygger systemlastvektor
     R = np.zeros(npunkt)

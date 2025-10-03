@@ -45,7 +45,7 @@ def lesinput():
 
     # Leser geometridata for tverrsnittstypene
     # Bestem selv verdiene som er nødvendig å lese inn, samt hva verdiene som leses inn skal representere
-    # geom = np.loadtxt(fid, dtype = float, max_rows = ngeom)
+    geom = np.loadtxt(fid, dtype = float, max_rows = ngeom)
 
     # Leser antall laster som virker på rammen
     comlin = fid.readline() 
@@ -58,4 +58,4 @@ def lesinput():
     # Lukker input-filen
     fid.close()
 
-    return npunkt, punkt, nelem, elemkonn, tvsnitt
+    return npunkt, punkt, nelem, elemkonn, tvsnitt, geom
