@@ -4,19 +4,19 @@ import numpy as np
 # Funksjoner
 from lesinput import lesinput
 from lengder import lengder
-from boyestivhet import boyestivhet
 
 
 def main():
 
-    #Leser inputdata
-    npunkt, punkt, nelem, elemkonn, tvsnitt, geom = lesinput()
+    # -----Leser inputdata
+    npunkt, punkt, nelem, elemkonn, tvsnitt = lesinput()
 
-    #Beregner elementlengder
+    # -----Beregner elementlengder
     elemlen = lengder(punkt, elemkonn)
 
-    #Beregner bøyestivhet for alle elementer
-    EI = boyestivhet(tvsnitt, geom) 
+    # -----Beregner bøyestivhet for alle elementer
+    # Lag funksjonen selv
+    # EI = boyestivhet(tvsnitt, geom, ...
 
     # ------Bygger systemlastvektor
     R = np.zeros(npunkt)
@@ -73,5 +73,6 @@ def main():
     #-----Printer skjærkraftverdier ved endene for alle elementer
     # print("Skjærkraftverdier for tegning av Q-diagram (for hånd):")
     # print(Qval)
+    print('hello world')
 
 main()

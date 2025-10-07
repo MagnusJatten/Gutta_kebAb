@@ -25,7 +25,5 @@
 8 7 70854000 1
 # Antall tverrsnittsgeometrier
 0
-#For I: total høyde 1, bredde 2, tykkelse steg 3, tykkelse flens 4; for rør: ytre diameter 1, indre diameter 2
-
 # Antall laster
 0
