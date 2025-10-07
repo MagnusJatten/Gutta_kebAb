@@ -5,12 +5,12 @@ import numpy as np
 from lesinput import lesinput
 from lengder import lengder
 from boyestivhet import boyestivhet
-
+from lastvektor import FIM 
 
 def main():
 
     #Leser inputdata
-    npunkt, punkt, nelem, elemkonn, tvsnitt, geom = lesinput()
+    npunkt, punkt, nelem, elemkonn, tvsnitt, geom, nlast, lastdata = lesinput()
 
     #Beregner elementlengder
     elemlen = lengder(punkt, elemkonn)
@@ -18,12 +18,12 @@ def main():
     #Beregner bøyestivhet for alle elementer
     EI = boyestivhet(tvsnitt, geom) 
 
-    # ------Bygger systemlastvektor
+    #Bygger systemlastvektor
     R = np.zeros(npunkt)
-    #for ilast in lastdata:
+    for ilast in lastdata:
         # -----Beregner elementlastvektor S_fim m/fastinnspenningsmomenter for elementer med ytre last
         # Lag funksjonen selv
-        # S_fim = elemlast(elemlen, ...
+        S_fim = FIM(elemlen, lastdata)
 
         # -----Adderer elementlastvektor S_fim inn i systemlastvektor R vha. elementkonnektivitet
         # Lag funksjonen selv

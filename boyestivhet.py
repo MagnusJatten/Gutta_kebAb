@@ -1,5 +1,7 @@
 import numpy as np 
-
+'''
+Beregner bøyestivhet EI for alle elementer basert på tverrsnittsdata og geometridata
+'''
 def boyestivhet(tvsnitt, geom):
     EI = np.zeros(len(tvsnitt))
     for i in range(len(tvsnitt)):
@@ -17,4 +19,3 @@ def boyestivhet(tvsnitt, geom):
             I = (np.pi/64)*(D**4 - d**4)
             EI[i] = E*I
     return EI 
-
