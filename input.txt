@@ -1,29 +1,57 @@
 # Antall knutepunkt 
 9
-# x, y, fastholdt/fri rotasjon=0,1
-0 0 1			
-0 10 0
-0 20 0
-10 20 0
-10 10 0
-10 0 0
-20 20 0
-20 10 0
-20 0 0
-# Antall element
-10			
-# Systemfrihetsgrad for lokal frihetsgrad 1, Systemfrihetsgrad for lokal ende 2, Elastisitetsmodul, Profiltype
-0 1 70854000 1
-1 2 70854000 1
-1 4 141708000 2
-2 3 70854000 2
-4 3 70854000 1
-5 4 70854000 1
-3 6 70854000 2
-4 7 141708000 1
-7 6 70854000 2
-8 7 70854000 1
+# x [m], y [m], knutepunktnr., fastholdt/fri rotasjon=0,1 (bestemte fastholdt = 1)
+0, 0, 0, 1			
+0, 12, 1, 0
+0, 24, 2, 0
+0, 36, 3, 0
+18, 0, 4, 0
+18, 12, 5, 0
+18, 24, 6, 0
+18, 36, 7, 0
+38, 0, 8, 1
+38, 12, 9, 0
+#
+# Antall element (fra og med 0 til 10)
+10		
+#
+# Elementnr, Systemfrihetsgrad for lokal frihetsgrad 1, Systemfrihetsgrad for lokal ende 2, Elastisitetsmodul [GPa], Profiltype (vertikal = 1 og horisontal = 2)
+0, 0, 1, 210, 1
+1, 1, 5, 210, 2
+2, 1, 2, 210, 1
+3, 2, 6, 210, 2
+4, 2, 3, 210, 1
+5, 3, 7, 210, 2
+6, 4, 5, 210, 1
+7, 5, 9, 210, 2
+8, 5, 6, 210, 1
+9, 6, 7, 210, 1
+10, 8, 9, 210, 1 
+#
 # Antall tverrsnittsgeometrier
 0
+# , I-profil = 1 og Rørprofil = 2
+#
 # Antall laster
 0
+# Info punktlaster:
+# Elementnr, Intensitet [kN], alfa-verdi, type last (punktlaster = 1)
+3, 110, 0.4, 1
+5, 55, 0, 1
+#
+# Info fordelte laster:
+# Merk ende 1 er alltid lengst til venstre og nederst for vertikale bjelker
+# Elementnr, Intensitet ved ende 1 [kN/m], Intensitet ved ende 2 [kN/m], Type last (jevnt fordelt = 2 og lineært fordelt last = 3)
+0, 8, 8, 2
+0, 0, 3, 3  
+2, 11, 11, 2
+2, 0, 3, 3
+4, 14, 14, 2
+4, 0, 3, 3 # Elementnr 0, 2 og 4 representerer den lange vertikale vindlasten 
+1, 7, 7, 2
+5, 9, 9, 2
+7, 5, 5, 2
+#
+#Info moment:
+# Knutepunktnr momentet virker i, Intensitet [kNm], index = 0 viser at dette er et knutepunkt,type last (moment = 4)
+3, -320, 0, 4
