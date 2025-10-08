@@ -5,7 +5,7 @@ import numpy as np
 from lesinput import lesinput
 from lengder import lengder
 from boyestivhet import boyestivhet
-from lastvektor import FIM 
+from lastvektor import FIM, syslast
 
 def main():
 
@@ -20,11 +20,12 @@ def main():
 
     #Bygger systemlastvektor
     R = np.zeros(npunkt)
-    for ilast in lastdata:
+  
         # -----Beregner elementlastvektor S_fim m/fastinnspenningsmomenter for elementer med ytre last
         # Lag funksjonen selv
-        S_fim = FIM(elemlen, lastdata)
+    S_fim = FIM(elemlen, lastdata)
 
+    R = syslast(R, S_fim, elemkonn, lastdata)
         # -----Adderer elementlastvektor S_fim inn i systemlastvektor R vha. elementkonnektivitet
         # Lag funksjonen selv
         # R = elemlast_til_syslast(R, S_fim, elemkonn )
