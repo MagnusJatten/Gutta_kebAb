@@ -56,4 +56,4 @@ def lesinput():
     # Lukker input-filen
     fid.close()
 
-    return npunkt, punkt, nelem, elemkonn, tvsnitt, geom, nlast,lastdata
+    return npunkt, punkt, nelem, elemkonn, tvsnitt, geom, nlast, lastdata

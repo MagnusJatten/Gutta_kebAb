@@ -5,7 +5,8 @@ import numpy as np
 from lesinput import lesinput
 from lengder import lengder
 from boyestivhet import boyestivhet
-from lastvektor import FIM, syslast
+from lastvektor import syslast
+from FIM import FIM
 
 def main():
 
