@@ -17,13 +17,13 @@ from boyespenning import boyespenning
 def main():
 
     #Leser inputdata
-    npunkt, punkt, nelem, elemkonn, tvsnitt, geom, nlast, lastdata = lesinput()
+    npunkt, punkt, nelem, elemkonn, tvsnitt, geom, lastdata = lesinput()
 
     #Beregner elementlengder
     elemlen = lengder(punkt, elemkonn)
 
     #Beregner bøyestivhet for alle elementer
-    EI, I, zc = boyestivhet(tvsnitt, geom)
+    EI, I, zc = boyestivhet(tvsnitt, geom, nelem)
 
     #Bygger systemlastvektor
     R = np.zeros(npunkt)
@@ -32,7 +32,7 @@ def main():
         # Lag funksjonen selv
     S_fim = FIM(elemlen, lastdata)
 
-    R = syslast(R, S_fim, elemkonn, lastdata)
+    R = syslast(R, S_fim, elemkonn, lastdata, elemlen)
         # -----Adderer elementlastvektor S_fim inn i systemlastvektor R vha. elementkonnektivitet
         # Lag funksjonen selv
         # R = elemlast_til_syslast(R, S_fim, elemkonn )
