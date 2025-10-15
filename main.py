@@ -7,6 +7,12 @@ from lengder import lengder
 from boyestivhet import boyestivhet
 from lastvektor import syslast
 from FIM import FIM
+from stivmat import stivmat
+from randbet import randbet
+from moment import moment
+from skjærkraft import skjær
+from boyespenning import boyespenning
+
 
 def main():
 
@@ -17,7 +23,7 @@ def main():
     elemlen = lengder(punkt, elemkonn)
 
     #Beregner bøyestivhet for alle elementer
-    EI = boyestivhet(tvsnitt, geom) 
+    EI, I, zc = boyestivhet(tvsnitt, geom)
 
     #Bygger systemlastvektor
     R = np.zeros(npunkt)
@@ -31,49 +37,48 @@ def main():
         # Lag funksjonen selv
         # R = elemlast_til_syslast(R, S_fim, elemkonn )
 
-        # -----Adderer knutepunktsmoment inn i systemlastvektor R
-        # Lag funksjonen selv
-        # R = knutmom(R, ...
 
     # ------Bygger systemstivhetsmatrisen ved å innaddere elementstivhetsmatriser vha. elementkonnektivitet
     # Lag funksjonen selv
-    # K = stivmat(nelem, npunkt, tvsnitt, elemkonn, elemlen, EI, ...
+    K = stivmat(nelem, npunkt, elemkonn, elemlen, EI)
 
     # ------Innfører grensebetingelser
     # Lag funksjonen selv basert på valgt metode for innføring av grensebetingelser
-    # Kn, Rn = bc(punkt, K, R)
+    K_med_rand = randbet(punkt, npunkt, K)
 
     # -----Løser ligningssystemet------
-    # rot = np.linalg.solve(Kn, Rn)
+    #r = np.zeros_like(R), må kanskje initialisere r her?
+    r = np.linalg.solve(K_med_rand, R)
     
     #------Beregner momentverdier for alle element ved endene, 
     #------og ved midtpunkt for fordelt last og under punktlaster
     #------vha. superposisjonsprinsippet
     # Lag funksjonen selv
-    # Mval = moment(nlast, last, elemkonn, elemlen, rot, tvsnitt, EI, ...
+    M_verdier= moment(nelem,EI, elemlen, r,S_fim,lastdata )
+
 
     #------Beregner skjærkraftverdier for alle element ved endene
     #------vha. enkel derivasjon (Q=dM/ds) for Q-bidrag fra moment pga.
     #------bjelkeenderotasjoner, og bruker superposisjonsprinsippet
     #------for å addere til Q-bidrag fra ytre last
     # Lag funksjonen selv
-    # Qval = shear(nlast, last, elemkonn, elemlen, rot, tvsnitt, ...
+    Q_verdier  = skjær(nelem, lastdata, M_verdier, elemlen)
 
     #------Beregner bøyespenning for alle element ved endene, 
     #------og ved midtpunkt for fordelt last og under punktlaster
     # Lag funksjonen selv
-    # sigma_M = boyespenn(Mval, tvsnitt, ...
+    sigma_M = boyespenning(M_verdier, I, zc, nelem)
 
     #-----Printer bøyespenninger for alle elementene
-    # print("Bøyespenninger:")
-    # print(sigma_M)
+    print("Bøyespenninger:")
+    print(sigma_M)
 
     #-----Printer momentverdier for alle elementer
-    # print("Momentverdier for tegning av M-diagram (for hånd):")
-    # print(Mval)
+    print("Momentverdier for tegning av M-diagram (for hånd):")
+    print(M_verdier)
 
     #-----Printer skjærkraftverdier ved endene for alle elementer
-    # print("Skjærkraftverdier for tegning av Q-diagram (for hånd):")
-    # print(Qval)
+    print("Skjærkraftverdier for tegning av Q-diagram (for hånd):")
+    print(Q_verdier)
 
 main()

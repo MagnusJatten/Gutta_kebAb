@@ -13,8 +13,9 @@ def lesinput():
     # Knutepunktnummer tilsvarer radnummer
     # x-koordinat lagres i kolonne 1, y-koordinat i kolonne 2
     # Grensebetingelse lagres i kolonne 3; 1 = fast innspent og 0 = fri rotasjon
-    punkt = np.loadtxt(fid, dtype = int, max_rows = npunkt)     # 'max_rows = npunkt' sorger for at vi bare leser 
-																# de 'npunkt' neste linjene i tekstfilen
+    punkt = np.loadtxt(fid, dtype = int, max_rows = npunkt)     
+   
+    
 
     # Leser antall elementer
     comlin = fid.readline() 
@@ -29,7 +30,7 @@ def lesinput():
     # Det anbefales at nummerering av systemfrihetsgrad starter på 0, slik at det samsvarerer med indeksering i Python
     elem = np.loadtxt(fid, dtype = int, max_rows = nelem)
 
-    # Elementkonnektivitet
+    # Elementkonnektivitetstabell
     # Kolonne 1: Systemfrihetsgrad for elementfrihetsgrad 1
     # Kolonne 2: Systemfrihetsgrad for elementfrihetsgrad 2
     elemkonn = elem[0:nelem,0:2]
@@ -41,10 +42,10 @@ def lesinput():
 
     # Leser antall laster som virker på rammen
     comlin = fid.readline() 
-    ngeom = int(fid.readline())
+    
 
     # Leser geometridata for tverrsnittstypene
-    geom = np.loadtxt(fid, dtype = float, max_rows = ngeom)
+    geom = np.loadtxt(fid, dtype = float, max_rows = nelem)
 
     # Leser antall laster som virker på rammen
     comlin = fid.readline() 
