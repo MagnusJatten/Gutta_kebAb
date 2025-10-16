@@ -5,8 +5,9 @@ import numpy as np
 og -momenter og trekke fra fastinnspenningsmomenter
 '''
 
-def syslast(R,S_fim,elemkonn, lastdata, elemlen):
-    for i in range(len(elemlen)):
+def syslast(S_fim,elemkonn, lastdata, npunkt):
+    R = np.zeros(npunkt)
+    for i in range(len(lastdata)):
         #Knutepunktskrefter og momenter
         R[elemkonn[i,0]] += lastdata[i,1]
         R[elemkonn[i,1]] += lastdata[i,2]
@@ -14,4 +15,6 @@ def syslast(R,S_fim,elemkonn, lastdata, elemlen):
         #Fastinnspenningsmomenter
         R[elemkonn[i,0]] -= S_fim[i,0]
         R[elemkonn[i,1]] -= S_fim[i,1]
+    print(f'R = {R}')
     return R
+

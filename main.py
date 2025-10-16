@@ -26,13 +26,13 @@ def main():
     EI, I, zc = boyestivhet(tvsnitt, geom, nelem)
 
     #Bygger systemlastvektor
-    R = np.zeros(npunkt)
+   
   
         # -----Beregner elementlastvektor S_fim m/fastinnspenningsmomenter for elementer med ytre last
         # Lag funksjonen selv
     S_fim = FIM(elemlen, lastdata)
 
-    R = syslast(R, S_fim, elemkonn, lastdata, elemlen)
+    R = syslast(S_fim, elemkonn, lastdata, npunkt)
         # -----Adderer elementlastvektor S_fim inn i systemlastvektor R vha. elementkonnektivitet
         # Lag funksjonen selv
         # R = elemlast_til_syslast(R, S_fim, elemkonn )
