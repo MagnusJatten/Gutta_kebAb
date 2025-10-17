@@ -48,6 +48,7 @@ def lesinput():
 
     # Leser geometridata for tverrsnittstypene
     geom = np.loadtxt(fid, dtype = float, max_rows = nelem) #Array med geometri
+    #print(geom)
     #print(f'geom = {geom}')
     # Leser antall laster som virker på rammen
     comlin = fid.readline() 
@@ -57,7 +58,8 @@ def lesinput():
     
     # Leser lastdata
     lastdata = np.loadtxt(fid, dtype = float, max_rows = nlast)    
-    #print(f'lastdata = {lastdata}')
+
+    print(f'lastdata = {lastdata}')
     # Lukker input-filen
     fid.close()
     

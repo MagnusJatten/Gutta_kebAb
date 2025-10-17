@@ -15,6 +15,5 @@ def syslast(S_fim,elemkonn, lastdata, npunkt):
         #Fastinnspenningsmomenter
         R[elemkonn[i,0]] -= S_fim[i,0]
         R[elemkonn[i,1]] -= S_fim[i,1]
-    print(f'R = {R}')
     return R
 

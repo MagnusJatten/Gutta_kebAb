@@ -7,7 +7,7 @@ def boyestivhet(tvsnitt, geom, nelem):
     I = np.zeros(len(tvsnitt))
     zc = np.zeros(len(tvsnitt)) 
     for i in range(nelem): #hvert element 
-        E = tvsnitt[i,0]
+        E = tvsnitt[i,0]*1e3 
         if tvsnitt[i,1] == 2: #I-profil
             h = geom[i,1] #totalt høyde
             b = geom[i,2] #flensbredde
