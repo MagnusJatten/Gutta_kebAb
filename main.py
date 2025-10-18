@@ -1,5 +1,6 @@
 # Pakker
 import numpy as np
+import matplotlib.pyplot as plt
 
 # Funksjoner
 from lesinput import lesinput
@@ -12,73 +13,53 @@ from randbet import randbet
 from moment import moment
 from skjærkraft import skjær
 from boyespenning import boyespenning
-
+from resultat import resultat_tabeller
 
 def main():
 
     #Leser inputdata
-    npunkt, punkt, nelem, elemkonn, tvsnitt, geom, nlast, lastdata = lesinput()
+    npunkt, punkt, nelem, elemkonn, tvsnitt, geom, lastdata = lesinput()
 
     #Beregner elementlengder
     elemlen = lengder(punkt, elemkonn)
 
     #Beregner bøyestivhet for alle elementer
-    EI, I, zc = boyestivhet(tvsnitt, geom)
-
-    #Bygger systemlastvektor
-    R = np.zeros(npunkt)
+    EI, I, zc = boyestivhet(tvsnitt, geom, nelem)
   
-        # -----Beregner elementlastvektor S_fim m/fastinnspenningsmomenter for elementer med ytre last
-        # Lag funksjonen selv
+    #Beregner elementlastvektor S_fim m/fastinnspenningsmomenter for elementer med ytre last    
     S_fim = FIM(elemlen, lastdata)
 
-    R = syslast(R, S_fim, elemkonn, lastdata)
-        # -----Adderer elementlastvektor S_fim inn i systemlastvektor R vha. elementkonnektivitet
-        # Lag funksjonen selv
-        # R = elemlast_til_syslast(R, S_fim, elemkonn )
+    #Bygger systemlastvektor
+    R = syslast(S_fim, elemkonn, lastdata, npunkt)
 
+    #Bygger systemstivhetsmatrisen ved å innaddere elementstivhetsmatriser vha. elementkonnektivitet
 
-    # ------Bygger systemstivhetsmatrisen ved å innaddere elementstivhetsmatriser vha. elementkonnektivitet
-    # Lag funksjonen selv
     K = stivmat(nelem, npunkt, elemkonn, elemlen, EI)
 
-    # ------Innfører grensebetingelser
-    # Lag funksjonen selv basert på valgt metode for innføring av grensebetingelser
+    #Innfører grensebetingelser
     K_med_rand = randbet(punkt, npunkt, K)
 
-    # -----Løser ligningssystemet------
-    #r = np.zeros_like(R), må kanskje initialisere r her?
+    #Løser ligningssystemet
     r = np.linalg.solve(K_med_rand, R)
     
-    #------Beregner momentverdier for alle element ved endene, 
-    #------og ved midtpunkt for fordelt last og under punktlaster
-    #------vha. superposisjonsprinsippet
-    # Lag funksjonen selv
+    #Beregner momentverdier for alle element ved endene, 
+    #og ved midtpunkt for fordelt last og under punktlaster  
     M_verdier= moment(nelem,EI, elemlen, r,S_fim,lastdata )
-
-
-    #------Beregner skjærkraftverdier for alle element ved endene
-    #------vha. enkel derivasjon (Q=dM/ds) for Q-bidrag fra moment pga.
-    #------bjelkeenderotasjoner, og bruker superposisjonsprinsippet
-    #------for å addere til Q-bidrag fra ytre last
-    # Lag funksjonen selv
+    
+    #Beregner skjærkraftverdier for alle element ved endene
     Q_verdier  = skjær(nelem, lastdata, M_verdier, elemlen)
 
-    #------Beregner bøyespenning for alle element ved endene, 
-    #------og ved midtpunkt for fordelt last og under punktlaster
-    # Lag funksjonen selv
+    #Beregner bøyespenning for alle element ved endene, 
+    #og ved midtpunkt for fordelt last og under punktlaster
     sigma_M = boyespenning(M_verdier, I, zc, nelem)
+    
 
-    #-----Printer bøyespenninger for alle elementene
-    print("Bøyespenninger:")
-    print(sigma_M)
+    #Resultater
+    Moment = np.round(M_verdier/1e6,2) #Konverting til kNm  og avrunding for utskrift
+    Skjær = np.round(Q_verdier/1e3,2)  #Konverting til kN og avrunding for utskrift
+    sigma_M = np.round(sigma_M,2)      #Avrunding for utskrift
+    
+    resultat_tabeller(Moment, Skjær, sigma_M)
 
-    #-----Printer momentverdier for alle elementer
-    print("Momentverdier for tegning av M-diagram (for hånd):")
-    print(M_verdier)
-
-    #-----Printer skjærkraftverdier ved endene for alle elementer
-    print("Skjærkraftverdier for tegning av Q-diagram (for hånd):")
-    print(Q_verdier)
 
 main()
