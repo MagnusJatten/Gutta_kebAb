@@ -59,7 +59,7 @@ def lesinput():
     # Leser lastdata
     lastdata = np.loadtxt(fid, dtype = float, max_rows = nlast)    
 
-    print(f'lastdata = {lastdata}')
+    #print(f'lastdata = {lastdata}')
     # Lukker input-filen
     fid.close()
     

@@ -6,11 +6,10 @@ Beregner momentverdier for alle element ved endene
 
 def moment(nelem,EI, elemlen, rot, fim, lastdata):
     M_verdier = np.zeros((nelem,3))
-    print(rot)
     for i in range(nelem):
         k = np.array([[4, 2], [2, 4]]) # Lokal stivhetsmatrise for hvert element
         L = elemlen[i]
-        k = k*(EI[i]/elemlen[i]) #Skalerer med EI/L
+        k = k*((EI[i])/(elemlen[i])) #Skalerer med EI/L
         #Ende 1 (4,2)
         kr = k[0,0] * rot[i] + k[0,1]*rot[i]
         M1 = kr + fim[i,0]
@@ -44,5 +43,4 @@ def moment(nelem,EI, elemlen, rot, fim, lastdata):
                 M_mid += (q*x)/(6*L) *(2*L**2 -3*L*x + x**2)
                 M_mid += M_tot
                 M_verdier[i,1] = M_mid 
-    #print(M_verdier)
-    return M_verdier
+    return M_verdier 
