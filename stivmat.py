@@ -8,10 +8,11 @@ via elementkonnektivitet
 def stivmat(nelem, npunkt, elemkonn, elemlen, EI):
     K = np.zeros((npunkt, npunkt)) # Stivhetsmatrise med dimensjon (npunkt x npunkt)
     k = np.array([[4, 2], [2, 4]]) # Lokal stivhetsmatrise for hvert element
-    L = elemlen # Elementlengder
+    
 
     for i in range(nelem):
-        EI_L = ((EI[i]) / L[i]) # E-modul delt på elementlengde
+        L = elemlen[i] # Elementlengde
+        EI_L = ((EI[i]) / L)
         k_ij = EI_L * k # For hver element, skaler lokal stivhetsmatrise med EI/L
 
         K[elemkonn[i, 0], elemkonn[i, 0]] += k_ij[0, 0]

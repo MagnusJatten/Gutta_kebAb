@@ -25,8 +25,6 @@ def main():
 
     #Beregner bøyestivhet for alle elementer
     EI, I, zc = boyestivhet(tvsnitt, geom, nelem)
-
-   
   
     #Beregner elementlastvektor S_fim m/fastinnspenningsmomenter for elementer med ytre last    
     S_fim = FIM(elemlen, lastdata)
@@ -45,23 +43,23 @@ def main():
     r = np.linalg.solve(K_med_rand, R)
     
     #Beregner momentverdier for alle element ved endene, 
-    #og ved midtpunkt for fordelt last og under punktlaster
-    
-    
+    #og ved midtpunkt for fordelt last og under punktlaster  
     M_verdier= moment(nelem,EI, elemlen, r,S_fim,lastdata )
-
-
+    
     #Beregner skjærkraftverdier for alle element ved endene
-  
     Q_verdier  = skjær(nelem, lastdata, M_verdier, elemlen)
 
     #Beregner bøyespenning for alle element ved endene, 
     #og ved midtpunkt for fordelt last og under punktlaster
-    
     sigma_M = boyespenning(M_verdier, I, zc, nelem)
+    
 
-    #Resultat-tabeller
-    resultat_tabeller(M_verdier, Q_verdier, sigma_M)
+    #Resultater
+    Moment = np.round(M_verdier/1e6,2) #Konverting til kNm  og avrunding for utskrift
+    Skjær = np.round(Q_verdier/1e3,2)  #Konverting til kN og avrunding for utskrift
+    sigma_M = np.round(sigma_M,2)      #Avrunding for utskrift
+    
+    resultat_tabeller(Moment, Skjær, sigma_M)
 
 
 main()
