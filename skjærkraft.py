@@ -12,7 +12,8 @@ def skjær(nelem, lastdata, M_verdier, elemlen):
 
         #Fra endemomenter  
         Q_verdier[i,0] = (M_verdier[i,0] - M_verdier[i,1]) / L 
-        Q_verdier[i,1] = Q_verdier[i,0]  
+        
+        Q_verdier[i,1] = -Q_verdier[i,0]  
         if i in lastdata[:, 0]:
             #Punktlast 
             if lastdata[i,4] == 1: 

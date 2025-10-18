@@ -12,4 +12,4 @@ def lengder(punkt, elemkonn):
         dy = punkt[ielemkonn[1], 1] - punkt[ielemkonn[0], 1]
         elemlen = np.append(elemlen, np.sqrt(dx*dx + dy*dy))
 
-    return elemlen
+    return elemlen*1000 #Konverterer til mm
