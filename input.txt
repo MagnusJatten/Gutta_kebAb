@@ -11,7 +11,7 @@
 18 36 0
 38 0 1
 38 12 0
-# Antall element (fra og med 0 til 10)
+# Antall element 
 10		
 # Elemennr, Systemfrihetsgrad for lokal ende 1, Systemfrihetsgrad for lokal ende 2, Elastisitetsmodul [Pa], Profiltype (vertikal = 1 og horisontal = 2)
 0 1 210000000000 1
