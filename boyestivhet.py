@@ -25,7 +25,7 @@ def boyestivhet(tvsnitt, geom, nelem):
             I[i] = I_i
             zc[i] = D/2 #nøytralakse
         elif tvsnitt[i, 1] == 3: #Ikke spesifisert, oppgit selv (øving 8)
-            I_i = 1e4*geom[i,1]
+            I_i = geom[i,1]
             I[i] = I_i
             EI[i] = E*I_i
             zc[i] = geom[i,2]

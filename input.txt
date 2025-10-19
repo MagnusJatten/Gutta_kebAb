@@ -1,51 +1,36 @@
-# Antall knutepunkt 
-10
+# Antall knutepunkt
+5
 # x [m] y [m] fastholdt/fri rotasjon= 0/1
-0 0 1			
-0 12 0
-0 24 0
-0 36 0
-18 0 0
-18 12 0
-18 24 0
-18 36 0
-38 0 1
-38 12 0
-# Antall element (fra og med 0 til 10)
-10		
-# Elemennr, Systemfrihetsgrad for lokal ende 1, Systemfrihetsgrad for lokal ende 2, Elastisitetsmodul [Pa], Profiltype (vertikal = 1 og horisontal = 2)
-0 1 210000000000 1
-1 5 210000000000 2
-1 2 210000000000 1
-2 6 210000000000 2 
-2 3 210000000000 1
-3 7 210000000000 2
-4 5 210000000000 1
-5 9 210000000000 2
-5 6 210000000000 1
-6 7 210000000000 1
-8 9 210000000000 1 
-# Elemennr For I: total høyde 1, bredde 2, tykkelse steg 3, tykkelse flens 4; for rør: ytre diameter 1, indre diameter 2
-0 150 110 0 0
-1 450 190 9.4 14.6
-2 150 110 0 0
-3 450 190 9.4 14.6
-4 150 110 0 0
-5 450 190 9.4 14.6
-6 150 110 0 0
-7 450 190 9.4 14.6
-8 150 110 0 0
-9 150 110 0 0
+0 0 1
+0 1 1
+1 1 1
+2 0 1
+2 1 1
+
+# Antall element
+7
+# Elemennr, Systemfrihetsgrad ende1, Elastisitetsmodul [Pa], Profiltype
+0 3 1 3
+0 2 1 3
+0 1 1 3
+1 2 1 3
+2 3 1 3
+2 4 1 3
+3 4 1 3
+
+# Geometri
+# Elemennr For I: total høyde 1, bredde 2, tykkelse steg 3, tykkelse flens 4
+0 1 1
+1 1.141 1
+2 10 1
+3 5 1
+4 1.141 1
+5 5 1
+6 10 1
+
 # Antall laster
-9
-# Elemennr, Intensitet ende 1, Intensitet ende 2, Type last (0 moment, 1  punkt, 2 fordelt last) ,lengde a
- 0 8 11 2 0   
- 1 7 7 2 0   
- 2 11 14 2 0   
- 3 -320 0 0 0   
- 3 110 0 1 0.4 
- 4 14 17 2 0   
- 5 9 9 2 0   
- 5 55 0 1 0   
- 7 5 5 0 0 
-     
+3
+# Elemennr, Intensitet ende 1, Intensitet ende 2, Type last, lengde a
+3 1.5 1.5 2 0
+5 1 1 2 0
+5 0 1 1 1
