@@ -1,6 +1,6 @@
 # Antall knutepunkt 
 10
-# x [m] y [m] fastholdt/fri rotasjon= 0/1
+# x [m] y [m] fastholdt/fri rotasjon= 1/0
 0 0 1			
 0 12 0
 0 24 0
