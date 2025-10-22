@@ -19,7 +19,6 @@ def main():
 
     #Leser inputdata
     npunkt, punkt, nelem, elemkonn, tvsnitt, geom, lastdata = lesinput()
-
     #Beregner elementlengder
     elemlen = lengder(punkt, elemkonn)
 
@@ -35,7 +34,7 @@ def main():
     #Bygger systemstivhetsmatrisen ved å innaddere elementstivhetsmatriser vha. elementkonnektivitet
 
     K = stivmat(nelem, npunkt, elemkonn, elemlen, EI)
-
+    
     #Innfører grensebetingelser
     K_med_rand = randbet(punkt, npunkt, K)
 
