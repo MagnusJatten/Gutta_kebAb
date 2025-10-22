@@ -25,7 +25,7 @@ def lesinput():
         punkt = []
         
         #Knutepunktsdata
-        for _ in range(npunkt):
+        for i in range(npunkt):
             punkt.append([float(x) for x in next_data_line(fid).split()])
         punkt = np.array(punkt)
 
@@ -34,7 +34,7 @@ def lesinput():
         elem = []
         
         #Elementsdata
-        for _ in range(nelem):
+        for i in range(nelem):
             elem.append([int(x) for x in next_data_line(fid).split()])
         elem = np.array(elem)
         elemkonn = elem[:, 0:2]  #Konnektivitetstabell
@@ -42,7 +42,7 @@ def lesinput():
 
         #Geometri
         geom = []
-        for _ in range(nelem):
+        for i in range(nelem):
             geom.append([float(x) for x in next_data_line(fid).split()])
         geom = np.array(geom)
 
@@ -51,7 +51,7 @@ def lesinput():
         lastdata = []
 
         #Lastdata
-        for _ in range(nlast):
+        for i in range(nlast):
             lastdata.append([float(x) for x in next_data_line(fid).split()])
         lastdata = np.array(lastdata)
 
