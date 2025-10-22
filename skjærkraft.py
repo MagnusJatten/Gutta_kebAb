@@ -5,9 +5,9 @@ Beregner skjærkraftverdier for alle element ved endene
 vha. superposisjonsprinsippet
 '''
 
-def skjær(nelem, lastdata, moment, elemlen):
-    Q_verdier = np.zeros((nelem, 2))
-    for i in range(nelem):
+def skjær(npunkt, lastdata, moment, elemlen):
+    Q_verdier = np.zeros((npunkt, 2))
+    for i in range(npunkt):
         L = elemlen[i] 
         # Bidrag fra endemomenter  
         Q_verdier[i,0] = (moment[i,0] + moment[i,1]) / L  # Ende 1
