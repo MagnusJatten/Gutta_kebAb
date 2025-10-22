@@ -24,13 +24,11 @@ def main():
 
     #Beregner bøyestivhet for alle elementer
     EI, I, zc = boyestivhet(tvsnitt, geom, nelem)
-  
     #Beregner elementlastvektor S_fim m/fastinnspenningsmomenter for elementer med ytre last    
     S_fim = FIM(elemlen, lastdata)
 
     #Bygger systemlastvektor
     R = syslast(S_fim, elemkonn, lastdata, npunkt)
-
     #Bygger systemstivhetsmatrisen ved å innaddere elementstivhetsmatriser vha. elementkonnektivitet
 
     K = stivmat(nelem, npunkt, elemkonn, elemlen, EI)
@@ -43,7 +41,7 @@ def main():
     
     #Beregner momentverdier for alle element ved endene, 
     #og ved midtpunkt for fordelt last og under punktlaster  
-    M_verdier= moment(nelem,EI, elemlen, r,S_fim,lastdata )
+    M_verdier= moment(nelem,EI, elemlen, r,S_fim,lastdata,elemkonn )
     
     #Beregner skjærkraftverdier for alle element ved endene
     Q_verdier  = skjær(nelem, lastdata, M_verdier, elemlen)

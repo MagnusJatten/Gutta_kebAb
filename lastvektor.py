@@ -18,7 +18,6 @@ def syslast(S_fim,elemkonn, lastdata, npunkt):
     for ilast in lastdata:
         if ilast[3] == 0: 
             element = ilast[0]
-            element = int(element)
             R[elemkonn[int(element),0]] += ilast[1]
             R[elemkonn[int(element),1]] += ilast[2]
     

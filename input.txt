@@ -41,10 +41,10 @@
 # Elemennr, Intensitet ende 1, Intensitet ende 2, Type last (0 moment, 1  punkt, 2 fordelt last) ,lengde a
  0 8 11 2 0   
  1 7 7 2 0   
- 2 11 14 2 0   
- 3 -320000000 0 0 0   
- 3 -110000 0 1 400 
+ 2 11 14 2 0      
+ 3 -110000 0 1 7200 
  4 14 17 2 0   
+ 5 -320000000 0 0 0
  5 9 9 2 0   
  5 -55000 0 1 0   
  7 5 5 2 0 
