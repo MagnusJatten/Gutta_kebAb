@@ -5,8 +5,8 @@ Bygger stivhetsmatrisen for hele systemet ved å innaddere elementstivhetsmatris
 via elementkonnektivitet
 '''
 
-def stivmat(nelem, npunkt, elemkonn, elemlen, EI):
-    K = np.zeros((npunkt, npunkt)) # Stivhetsmatrise med dimensjon (npunkt x npunkt)
+def stivmat(nelem,elemkonn, elemlen, EI):
+    K = np.zeros((nelem, nelem)) # Stivhetsmatrise med dimensjon (nelem x nelem)
     k = np.array([[4, 2], [2, 4]]) # Lokal stivhetsmatrise for hvert element
     
 

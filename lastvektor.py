@@ -4,8 +4,8 @@ import numpy as np
  Bygger systemlastvektor ved å addere knutepunktsmomenter og trekke fra fastinnspenningsmomenter
 '''
 
-def syslast(S_fim,elemkonn, lastdata, npunkt):
-    R = np.zeros(npunkt) #Initialiserer systemlastvektor
+def syslast(S_fim,elemkonn, lastdata, nelem):
+    R = np.zeros(nelem) #Initialiserer systemlastvektor
 
     #Fastinnspenningsmomenter
     for i in range(len(elemkonn)):
@@ -21,5 +21,6 @@ def syslast(S_fim,elemkonn, lastdata, npunkt):
             element = int(element)
             R[elemkonn[int(element),0]] += ilast[1]
             R[elemkonn[int(element),1]] += ilast[2]
-    
+   
     return R
+

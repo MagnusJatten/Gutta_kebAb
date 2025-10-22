@@ -19,7 +19,7 @@ def main():
 
     #Leser inputdata
     npunkt, punkt, nelem, elemkonn, tvsnitt, geom, lastdata = lesinput()
-    
+
     #Beregner elementlengder
     elemlen = lengder(punkt, elemkonn)
 
@@ -31,10 +31,9 @@ def main():
 
     #Bygger systemlastvektor
     R = syslast(S_fim, elemkonn, lastdata, npunkt)
-    print(R)
     #Bygger systemstivhetsmatrisen ved å innaddere elementstivhetsmatriser vha. elementkonnektivitet
 
-    K = stivmat(nelem, npunkt, elemkonn, elemlen, EI)
+    K = stivmat(nelem, elemkonn, elemlen, EI)
     
     #Innfører grensebetingelser
     K_med_rand = randbet(punkt, npunkt, K)
@@ -43,25 +42,24 @@ def main():
                   [ 2, 10, 48,  2, 10],
                   [ 1,  0,  2, 46, 20],
                   [ 0,  0, 10, 20, 60]])
-    
     #Løser ligningssystemet
     r = np.linalg.solve(K_med_rand, R)
     
     #Beregner momentverdier for alle element ved endene, 
     #og ved midtpunkt for fordelt last og under punktlaster  
-    M_verdier= moment(npunkt,EI, elemlen, r,S_fim,lastdata )
+    M_verdier= moment(nelem,EI, elemlen, r,S_fim,lastdata, elemkonn)
     
     #Beregner skjærkraftverdier for alle element ved endene
-    Q_verdier  = skjær(npunkt, lastdata, M_verdier, elemlen)
+    Q_verdier  = skjær(nelem, lastdata, M_verdier, elemlen)
 
     #Beregner bøyespenning for alle element ved endene, 
     #og ved midtpunkt for fordelt last og under punktlaster
-    sigma_M = boyespenning(M_verdier, I, zc, npunkt)
+    sigma_M = boyespenning(M_verdier, I, zc, nelem)
     
 
     #Resultater
-    Moment = np.round(M_verdier,10) #Konverting til kNm  og avrunding for utskrift
-    Skjær = np.round(Q_verdier,10)  #Konverting til kN og avrunding for utskrift
+    Moment = np.round(M_verdier,10)#Konverting til kNm  og avrunding for utskrift
+    Skjær = np.round(Q_verdier,10)#Konverting til kN og avrunding for utskrift
     sigma_M = np.round(sigma_M,10)      #Avrunding for utskrift
     
     resultat_tabeller(Moment, Skjær, sigma_M)
