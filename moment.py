@@ -39,7 +39,6 @@ def moment(nelem, EI, elemlen, rot, fim, lastdata, elemkonn):
                         b = L - a
                         Mp = (P*a*b)/L
                         M_under_last = M1 + ((M1-M2)/L * a) + Mp
-                        print(M_under_last)
                         M_verdier[i,1] += M_under_last
                 
                 elif type_last == 2:  # Fordelt last
