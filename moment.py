@@ -16,7 +16,7 @@ def moment(nelem, EI, elemlen, rot, fim, lastdata, elemkonn):
         #Ende 1 
         kr = k @ np.array([th1, th2])
         M1, M2 = kr + fim[i,:]
-        M_verdier[i,0] = M1
+        M_verdier[i,0] =- M1
 
         #Ende 2 
         M_verdier[i,2] = M2

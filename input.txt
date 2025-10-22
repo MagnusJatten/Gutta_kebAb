@@ -12,7 +12,7 @@
 38 0 1
 38 12 0
 # Antall element 
-10		
+11		
 #Systemfrihetsgrad for lokal ende 1, Systemfrihetsgrad for lokal ende 2, Elastisitetsmodul [Pa], Profiltype (vertikal = 1 og horisontal = 2)
 0 1 210000 1
 1 5 210000 2
@@ -36,6 +36,7 @@
 7 450 190 9.4 14.6
 8 150 110 0 0
 9 150 110 0 0
+10 150 110 0 0
 # Antall laster
 9
 # Elemennr, Intensitet ende 1, Intensitet ende 2, Type last (0 moment, 1  punkt, 2 fordelt last) ,lengde a

@@ -26,5 +26,6 @@ def resultat_tabeller(M_verdier, Q_verdier, sigma_m):
         ax.set_title(tittel, fontsize=12, fontweight='bold', pad = -40)
 
     plt.tight_layout()
+    #plt.savefig("Resultater.pdf", dpi = 300)
     plt.show()
 

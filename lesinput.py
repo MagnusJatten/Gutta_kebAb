@@ -1,45 +1,60 @@
 import numpy as np
 
 def lesinput():
-
-    # Åpner inputfilen
-    fid = open("input.txt", "r")
-
-    #Knutepunktsdata
-    comlin = fid.readline()            
-    npunkt = int(fid.readline())       
-
-    comlin = fid.readline() 
-    punkt = np.loadtxt(fid, dtype = int, max_rows = npunkt)      
+    """
+    Leser inputfil og returnerer grunnleggende data i ulike numpy-arrays.
+    """
     
-    #Elementdata
-    comlin = fid.readline() 
-    nelem = int(fid.readline()) #Antall element
-    comlin = fid.readline() 
-   
+    def next_data_line(fid):
+        '''
+        Sørger for at tommme linjer og kommentarer hoppes
+        over, og  returner neste datalinje.
+        '''
+        while True:
+            line = fid.readline()
+            if line == "":
+                return None
+            line = line.strip()
+            if line == "" or line.startswith("#"):
+                continue
+            return line
 
-    elem = np.loadtxt(fid, dtype = int, max_rows = nelem) #Elemntinfo 
-    comlin = fid.readline() 
-    
-    elemkonn = elem[0:nelem,0:2]
-    
-    tvsnitt = elem[0:nelem,2:4]
-    comlin = fid.readline() 
-  
+    with open("input.txt", "r") as fid:
+        #Antall knutepunkt
+        npunkt = int(next_data_line(fid))
+        punkt = []
+        
+        #Knutepunktsdata
+        for _ in range(npunkt):
+            punkt.append([float(x) for x in next_data_line(fid).split()])
+        punkt = np.array(punkt)
 
-    #Geometridata
-    geom = np.loadtxt(fid, dtype = float, max_rows = nelem) #Array med geometri
-    comlin = fid.readline() 
+        # Antall elementer
+        nelem = int(next_data_line(fid))
+        elem = []
+        
+        #Elementsdata
+        for _ in range(nelem):
+            elem.append([int(x) for x in next_data_line(fid).split()])
+        elem = np.array(elem)
+        elemkonn = elem[:, 0:2]  #Konnektivitetstabell
+        tvsnitt = elem[:, 2:4]   #E-modul og profiltype
 
-    #Lastdata
-    nlast = int(fid.readline())
-    comlin = fid.readline() 
+        #Geometri
+        geom = []
+        for _ in range(nelem):
+            geom.append([float(x) for x in next_data_line(fid).split()])
+        geom = np.array(geom)
 
-    lastdata = np.loadtxt(fid, dtype = float, max_rows = nlast)    
+        #Antall ytre laster
+        nlast = int(next_data_line(fid))
+        lastdata = []
 
-    # Lukker input-filen
-    fid.close()
-    
+        #Lastdata
+        for _ in range(nlast):
+            lastdata.append([float(x) for x in next_data_line(fid).split()])
+        lastdata = np.array(lastdata)
+
     return npunkt, punkt, nelem, elemkonn, tvsnitt, geom, lastdata
 
-lesinput()
+
