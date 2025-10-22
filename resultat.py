@@ -13,7 +13,7 @@ def resultat_tabeller(M_verdier, Q_verdier, sigma_m):
     tabeller = [
         (M_verdier, M_og_sigma_kolonner, "Momentverdier [kNm])"), 
         (Q_verdier, Q_kolonner , "Skjærkraftverdier [kN]"), 
-        (sigma_m, M_og_sigma_kolonner, "Bøyespenning [MPa]")]
+        (sigma_m, M_og_sigma_kolonner, "Bøyespenningsverdier [MPa]")]
     
 
     # Slå av akser og legg inn tabeller
@@ -21,7 +21,7 @@ def resultat_tabeller(M_verdier, Q_verdier, sigma_m):
         ax.axis("off")  # Skjul akser
         tabell = ax.table(cellText=data, rowLabels=rows, colLabels = kolonner, loc="center")
         tabell.auto_set_font_size(False)
-        tabell.set_fontsize(11)      
+        tabell.set_fontsize(9)      
         tabell.scale(1.3, 1.6)       
         ax.set_title(tittel, fontsize=12, fontweight='bold', pad = -40)
 
