@@ -26,17 +26,17 @@
 6 7 210000 1
 8 9 210000 1 
 # Elemennr For I: total høyde 1, bredde 2, tykkelse steg 3, tykkelse flens 4; for rør: ytre diameter 1, indre diameter 2
-0 150 110 0 0
-1 450 190 9.4 14.6
-2 150 110 0 0
-3 450 190 9.4 14.6
-4 150 110 0 0
-5 450 190 9.4 14.6
-6 150 110 0 0
-7 450 190 9.4 14.6
-8 150 110 0 0
-9 150 110 0 0
-10 150 110 0 0
+0 250 175 0 0
+1 600 220 12 19
+2 250 175 0 0
+3 550 210 11.1 17.2
+4 250 175 0 0
+5 550 210 11.1 17.2
+6 75 50 0 0
+7 600 220 12 19
+8 75 50 0 0
+9 75 50 0 0
+10 50 45 0 0
 # Antall laster
 9
 # Elemennr, Intensitet ende 1, Intensitet ende 2, Type last (0 moment, 1  punkt, 2 fordelt last) ,lengde a

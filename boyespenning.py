@@ -1,6 +1,6 @@
 import numpy as np 
 '''
-Beregner bøyespenning for alle element ved endene og midtpunkt ved fordelt last
+Beregner bøyespenning for alle element ved endene og midtpunkt ved fordelt last og under punktlaster
 '''
 def boyespenning(M_verdier, I, zc,nelem):
     sigma_m = np.zeros((nelem, 3))

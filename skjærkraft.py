@@ -14,8 +14,6 @@ def skjær(nelem, lastdata, moment, elemlen):
         Q_verdier[i,0] = (moment[i,0] + moment[i,2]) / L  # Ende 1
         Q_verdier[i,1] = Q_verdier[i,0]                   # Ende 2
 
-
-
         # Bidrag fra ytre laster
         for ilast in lastdata: 
             element = int(ilast[0])
