@@ -50,6 +50,5 @@ def moment(nelem, EI, elemlen, rot, fim, lastdata, elemkonn):
                     x = L/2
                     M_mid += (q*x)/(6*L) *(2*L**2 -3*L*x + x**2)
                     M_verdier[i,1] += M_mid
-    
 
     return M_verdier

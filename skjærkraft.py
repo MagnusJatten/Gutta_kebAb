@@ -11,8 +11,8 @@ def skjær(nelem, lastdata, moment, elemlen):
         L = elemlen[i] 
 
         # Bidrag fra endemomenter 
-        Q_verdier[i,0] = (moment[i,0] + moment[i,2]) / L  # Ende 1
-        Q_verdier[i,1] = Q_verdier[i,0]                   # Ende 2
+        Q_verdier[i,0] = (moment[i,0] +  moment[i,2]) / L  # Ende 1
+        Q_verdier[i,1] =  Q_verdier[i,0]                   # Ende 2
 
         # Bidrag fra ytre laster
         for ilast in lastdata: 
@@ -43,5 +43,5 @@ def skjær(nelem, lastdata, moment, elemlen):
                         q = q2 - q1
                         Q_verdier[i,0] += q*L/6
                         Q_verdier[i,1] -= q*L/3
-            
+    Q_verdier = Q_verdier[:, ::-1]  
     return Q_verdier
